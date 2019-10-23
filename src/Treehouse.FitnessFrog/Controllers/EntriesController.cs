@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Treehouse.FitnessFrog.Data;
 using Treehouse.FitnessFrog.Models;
@@ -46,6 +45,8 @@ namespace Treehouse.FitnessFrog.Controllers
                 Date = DateTime.Today
             };
 
+            ViewBag.ActivitiesSelectListItems = new SelectList(Data.Data.Activities, "Id", "Name");
+
             return View(entry);
         }
 
@@ -58,6 +59,10 @@ namespace Treehouse.FitnessFrog.Controllers
 
                 return RedirectToAction("Index");
             }
+
+            ViewBag.ActivitiesSelectListItems = new SelectList(Data.Data.Activities, "Id", "Name");
+
+            entry.ActivityId = entry.ActivityId;
 
             return View(entry);
         }
